@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:study_case_flutter/components/bottom_sheet.dart';
 
 class FilterComponent extends StatelessWidget {
   const FilterComponent({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class FilterComponent extends StatelessWidget {
           width: 20,
         ),
         ElevatedButton.icon(
-          onPressed: () => {},
+          onPressed: () => Get.bottomSheet( BottomSheetComponent()),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
