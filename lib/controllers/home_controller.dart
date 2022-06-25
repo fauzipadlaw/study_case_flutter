@@ -14,7 +14,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    fetchBusiness(buildFilter());
+    fetchBusiness();
     super.onInit();
   }
 
@@ -25,13 +25,18 @@ class HomeController extends GetxController {
   bool isCheckedCategory(String c) => listCategory.value.contains(c);
 
   Map buildFilter() {
-    var filter = {"size": size.value, "page": page.value, "listCategory": listCategory.value};
-    if (businessName.value.isNotEmpty) filter["businessName"] = businessName.value;
+    var filter = {
+      "size": size.value,
+      "page": page.value,
+      "listCategory": listCategory.value
+    };
+    if (businessName.value.isNotEmpty)
+      filter["businessName"] = businessName.value;
     return filter;
   }
 
-  void fetchBusiness(Map filter) {
-    homeProvider.listBusiness(filter).then((response) {
+  void fetchBusiness() {
+    homeProvider.listBusiness(buildFilter()).then((response) {
       if (response.statusCode == 200) {
         businessList.value = List<Business>.from(response.body["data"]
                 ["content"]
@@ -46,7 +51,6 @@ class HomeController extends GetxController {
 
   void fetchCategories() {
     homeProvider.listCategories().then((response) {
-      print("catgory ${response.statusCode}");
       if (response.statusCode == 200) {
         categories.value = List<Category>.from(
             response.body["data"].map((model) => Category.fromJson(model)));

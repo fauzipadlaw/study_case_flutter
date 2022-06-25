@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
@@ -59,13 +61,27 @@ class BottomSheetComponent extends GetView<HomeController> {
                                   children: [
                                     Text(controller.categories[index].name),
                                     IconButton(
-                                        onPressed: () => {
-
+                                        onPressed: () {
+                                          String code =
+                                              controller.categories[index].code;
+                                          if (controller.listCategory
+                                              .contains(code)) {
+                                            controller.listCategory
+                                                .remove(code);
+                                          } else {
+                                            controller.listCategory.add(code);
+                                          }
                                         },
-                                        icon: const Icon(
-                                          Icons.check_circle_rounded,
-                                          color: Colors.blue,
-                                        ))
+                                        icon: Obx(() => Icon(
+                                              Icons.check_circle_rounded,
+                                              color:
+                                                  controller.isCheckedCategory(
+                                                          controller
+                                                              .categories[index]
+                                                              .code)
+                                                      ? Colors.blue
+                                                      : Colors.grey,
+                                            )))
                                   ],
                                 ));
                               }))),
@@ -75,7 +91,10 @@ class BottomSheetComponent extends GetView<HomeController> {
                           minimumSize: const Size.fromHeight(
                               40), // fromHeight use double.infinity as width and 40 is the height
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.fetchBusiness();
+                          Get.back();
+                        },
                         child: Text('Terapkan'),
                       )
                     ],

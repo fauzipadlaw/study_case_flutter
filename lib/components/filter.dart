@@ -31,7 +31,9 @@ class FilterComponent extends StatelessWidget {
             GetBuilder<HomeController>(builder: (controller) {
               return ElevatedButton.icon(
                 onPressed: () {
-                  controller.fetchCategories();
+                  if (controller.categories.isEmpty) {
+                    controller.fetchCategories();
+                  }
                   Get.bottomSheet(const BottomSheetComponent());
                 },
                 style: ButtonStyle(

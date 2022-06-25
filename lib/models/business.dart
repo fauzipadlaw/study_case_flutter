@@ -9,12 +9,12 @@ class Business {
 
   Business(
       {this.id,
-        this.logo,
-        this.logoUrl,
-        this.businessName,
-        this.businessCategoryName,
-        this.businessCategoryId,
-        this.businessCore});
+      this.logo,
+      this.logoUrl,
+      this.businessName,
+      this.businessCategoryName,
+      this.businessCategoryId,
+      this.businessCore});
 
   Business.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -38,4 +38,3 @@ class Business {
     return data;
   }
 }
-
