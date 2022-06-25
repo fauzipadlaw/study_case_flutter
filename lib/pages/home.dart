@@ -123,6 +123,8 @@ class Home extends StatelessWidget {
         "businessCore": "Pertanian"
       }
     ];
+
+    var categories = [];
     return Scaffold(
       appBar: const MyAppBar(
         title: "Daftar Bisnis",
