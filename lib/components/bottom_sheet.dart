@@ -92,6 +92,7 @@ class BottomSheetComponent extends GetView<HomeController> {
                               40), // fromHeight use double.infinity as width and 40 is the height
                         ),
                         onPressed: () {
+                          controller.updatePage(1);
                           controller.fetchBusiness();
                           Get.back();
                         },

@@ -29,6 +29,7 @@ class Home extends GetView<HomeController> {
               ),
               Expanded(
                   child: Obx(() => ListView.builder(
+                      controller: controller.scrollController,
                       itemCount: controller.businessList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return BusinessCard(

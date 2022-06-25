@@ -17,7 +17,10 @@ class FilterComponent extends GetView<HomeController> {
             Flexible(
                 child: TextField(
               controller: controller.searchTextController,
-              onChanged: (_) => controller.fetchBusiness(),
+              onChanged: (_) {
+                controller.updatePage(1);
+                controller.fetchBusiness();
+              },
               decoration: InputDecoration(
                   fillColor: Colors.grey[300],
                   filled: true,

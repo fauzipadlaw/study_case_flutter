@@ -12,14 +12,22 @@ class HomeController extends GetxController {
   var categories = [].obs;
   final searchTextController = TextEditingController();
   HomeProvider homeProvider = Get.put(HomeProvider());
+  ScrollController scrollController = ScrollController();
 
   @override
   void onInit() {
     fetchBusiness();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        updatePage(page.value + 1);
+        fetchBusiness();
+      }
+    });
     super.onInit();
   }
 
-  void updatePage(int s) => size.value = s;
+  void updatePage(int s) => page.value = s;
 
   void updateCategory(List<String> categories) =>
       listCategory.value = categories;
@@ -41,9 +49,15 @@ class HomeController extends GetxController {
   void fetchBusiness() {
     homeProvider.listBusiness(buildFilter()).then((response) {
       if (response.statusCode == 200) {
-        businessList.value = List<Business>.from(response.body["data"]
-                ["content"]
-            .map((model) => Business.fromJson(model)));
+        if (page.value > 1) {
+          businessList.addAll(List<Business>.from(response.body["data"]
+                  ["content"]
+              .map((model) => Business.fromJson(model))));
+        } else {
+          businessList.value = List<Business>.from(response.body["data"]
+                  ["content"]
+              .map((model) => Business.fromJson(model)));
+        }
       } else {
         Get.snackbar("Error ${response.statusCode}",
             "Galat mendapat daftar bisnis. ${response.statusCode}",
