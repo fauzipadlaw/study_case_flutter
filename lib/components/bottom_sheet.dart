@@ -74,7 +74,15 @@ class BottomSheetComponent extends StatelessWidget {
                                         ))
                                   ],
                                 ));
-                              }))
+                              })),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.indigo,
+                          minimumSize: const Size.fromHeight(40), // fromHeight use double.infinity as width and 40 is the height
+                        ),
+                        onPressed: () {},
+                        child: Text('Terapkan'),
+                      )
                     ],
                   ),
                 )),
