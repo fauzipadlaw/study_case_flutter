@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:study_case_flutter/components/app_bar.dart';
+import 'package:study_case_flutter/components/business_card.dart';
 import 'package:study_case_flutter/components/filter.dart';
+import 'package:study_case_flutter/models/business.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -132,82 +134,15 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const FilterComponent(),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Expanded(
                   child: ListView.builder(
                       itemCount: dummy.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          elevation: 2.0,
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Row(
-                                        children: [
-                                          CachedNetworkImage(
-                                            imageUrl: dummy[index]["logoUrl"]
-                                                .toString(),
-                                            imageBuilder:
-                                                (context, imageProvider) =>
-                                                    Card(
-                                                        child: Container(
-                                              width: 80.0,
-                                              height: 80.0,
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: imageProvider,
-                                                    fit: BoxFit.cover,
-                                                    colorFilter:
-                                                        const ColorFilter.mode(
-                                                            Colors.red,
-                                                            BlendMode
-                                                                .colorBurn)),
-                                              ),
-                                            )),
-                                            placeholder: (context, url) =>
-                                                const CircularProgressIndicator(),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    const Icon(Icons.error),
-                                          ),
-                                          const SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  dummy[index]["businessName"]
-                                                      .toString(),
-                                                  textScaleFactor: 1.0,
-                                                ),
-                                                Text(
-                                                  dummy[index][
-                                                          "businessCategoryName"]
-                                                      .toString(),
-                                                  textScaleFactor: 1.0,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+                        Business business = Business.fromJson(dummy[index]);
+                        return BusinessCard(business: business);
                       })),
             ],
           )),
