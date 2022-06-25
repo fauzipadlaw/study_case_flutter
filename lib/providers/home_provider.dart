@@ -10,5 +10,6 @@ class HomeProvider extends GetConnect {
 
   Future<Response> listBusiness(Map filter) =>
       post('/business/parent/all', filter);
+
   Future<Response> listCategories() => get('/media/param/business/category');
 }

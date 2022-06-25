@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:study_case_flutter/components/bottom_sheet.dart';
 import 'package:study_case_flutter/controllers/home_controller.dart';
 
-class FilterComponent extends StatelessWidget {
+class FilterComponent extends GetView<HomeController> {
   const FilterComponent({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +16,8 @@ class FilterComponent extends StatelessWidget {
           children: [
             Flexible(
                 child: TextField(
+              controller: controller.searchTextController,
+              onChanged: (_) => controller.fetchBusiness(),
               decoration: InputDecoration(
                   fillColor: Colors.grey[300],
                   filled: true,

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:study_case_flutter/models/business.dart';
 import 'package:study_case_flutter/models/category.dart';
@@ -7,9 +8,9 @@ class HomeController extends GetxController {
   var size = 12.obs;
   var page = 1.obs;
   var listCategory = [].obs;
-  var businessName = "".obs;
   var businessList = [].obs;
   var categories = [].obs;
+  final searchTextController = TextEditingController();
   HomeProvider homeProvider = Get.put(HomeProvider());
 
   @override
@@ -19,9 +20,10 @@ class HomeController extends GetxController {
   }
 
   void updatePage(int s) => size.value = s;
-  void updateBusinessName(String s) => businessName.value = s;
+
   void updateCategory(List<String> categories) =>
       listCategory.value = categories;
+
   bool isCheckedCategory(String c) => listCategory.value.contains(c);
 
   Map buildFilter() {
@@ -30,8 +32,9 @@ class HomeController extends GetxController {
       "page": page.value,
       "listCategory": listCategory.value
     };
-    if (businessName.value.isNotEmpty)
-      filter["businessName"] = businessName.value;
+    if (searchTextController.text.isNotEmpty) {
+      filter["businessName"] = searchTextController.text;
+    }
     return filter;
   }
 
