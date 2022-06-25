@@ -22,6 +22,7 @@ class HomeController extends GetxController {
   void updateBusinessName(String s) => businessName.value = s;
   void updateCategory(List<String> categories) =>
       listCategory.value = categories;
+  bool isCheckedCategory(String c) => listCategory.value.contains(c);
 
   Map buildFilter() {
     var filter = {"size": size.value, "page": page.value, "listCategory": listCategory.value};
@@ -45,6 +46,7 @@ class HomeController extends GetxController {
 
   void fetchCategories() {
     homeProvider.listCategories().then((response) {
+      print("catgory ${response.statusCode}");
       if (response.statusCode == 200) {
         categories.value = List<Category>.from(
             response.body["data"].map((model) => Category.fromJson(model)));

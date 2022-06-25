@@ -2,15 +2,17 @@
 
 Study Case Flutter
 
-## Getting Started
+## Technologies
+- Language/Framework: Dart/Flutter
+- State Management: GetX
+- Libraries: get, cached_network_image
 
-This project is a starting point for a Flutter application.
+## Why chose Flutter?
+One of the benefits of using Flutter is that you can modify or customize widgets with ease. In addition, it provides UI widgets that meet key web application design requirements. Flutter, as an open-source framework, has attracted a broad and active community of developers since its release
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Setup (macOS)
+- Install flutter [online documentation](https://docs.flutter.dev/)
+- Clone this project
+- run `flutter pub get`
+- Open iOS Simulaltor
+- run `flutter run`

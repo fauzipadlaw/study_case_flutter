@@ -1,25 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class BottomSheetComponent extends StatelessWidget {
-  BottomSheetComponent({Key? key}) : super(key: key);
+import '../controllers/home_controller.dart';
 
-  final dummy = [
-    {"paramCode": "1", "paramName": "Ritel"},
-    {"paramCode": "2", "paramName": "F&B"},
-    {"paramCode": "3", "paramName": "Laundry"},
-    {"paramCode": "4", "paramName": "Mekanik & Jasa"},
-    {"paramCode": "5", "paramName": "Jasa"},
-    {"paramCode": "6", "paramName": "Agrikultur"},
-    {"paramCode": "7", "paramName": "Beauty Care"},
-    {"paramCode": "8", "paramName": "Pendidikan"},
-    {"paramCode": "9", "paramName": "Teknologi"}
-  ];
+class BottomSheetComponent extends GetView<HomeController> {
+  const BottomSheetComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var spacing = size.height / 25;
+    var checked = [];
     return BottomSheet(
       onClosing: () => {},
       builder: (BuildContext context) {
@@ -56,29 +48,32 @@ class BottomSheetComponent extends StatelessWidget {
                             color: Colors.grey),
                       ),
                       Expanded(
-                          child: ListView.builder(
+                          child: Obx(() => ListView.builder(
                               shrinkWrap: true,
-                              itemCount: dummy.length,
+                              itemCount: controller.categories.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return IntrinsicHeight(
                                     child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(dummy[index]["paramName"].toString()),
+                                    Text(controller.categories[index].name),
                                     IconButton(
-                                        onPressed: () => {},
+                                        onPressed: () => {
+
+                                        },
                                         icon: const Icon(
                                           Icons.check_circle_rounded,
                                           color: Colors.blue,
                                         ))
                                   ],
                                 ));
-                              })),
+                              }))),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.indigo,
-                          minimumSize: const Size.fromHeight(40), // fromHeight use double.infinity as width and 40 is the height
+                          minimumSize: const Size.fromHeight(
+                              40), // fromHeight use double.infinity as width and 40 is the height
                         ),
                         onPressed: () {},
                         child: Text('Terapkan'),
