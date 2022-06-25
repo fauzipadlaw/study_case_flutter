@@ -8,7 +8,8 @@ class FilterComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
+    return SizedBox(
+      height: 55,
         child: Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
