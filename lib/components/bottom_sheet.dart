@@ -60,7 +60,7 @@ class BottomSheetComponent extends GetView<HomeController> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(controller.categories[index].name),
-                                    IconButton(
+                                    Obx(() => IconButton(
                                         onPressed: () {
                                           String code =
                                               controller.categories[index].code;
@@ -72,16 +72,14 @@ class BottomSheetComponent extends GetView<HomeController> {
                                             controller.listCategory.add(code);
                                           }
                                         },
-                                        icon: Obx(() => Icon(
-                                              Icons.check_circle_rounded,
-                                              color:
-                                                  controller.isCheckedCategory(
-                                                          controller
-                                                              .categories[index]
-                                                              .code)
-                                                      ? Colors.blue
-                                                      : Colors.grey,
-                                            )))
+                                        icon: Icon(
+                                          Icons.check_circle_rounded,
+                                          color: controller.isCheckedCategory(
+                                                  controller
+                                                      .categories[index].code)
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                        )))
                                   ],
                                 ));
                               }))),
