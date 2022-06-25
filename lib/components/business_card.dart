@@ -29,8 +29,9 @@ class BusinessCard extends StatelessWidget {
                           height: 80.0,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.scaleDown,),
+                              image: imageProvider,
+                              fit: BoxFit.scaleDown,
+                            ),
                           ),
                         )),
                         placeholder: (context, url) =>
